@@ -19,7 +19,7 @@ export default class NewForm extends Component {
     event.preventDefault()
     console.log(this.props.baseUrl)
     // fetch to the backend
-    fetch(this.props.baseUrl + "/swims" || "/runs", {
+    fetch(this.props.baseUrl + "/swims", {
       method: 'POST',
       body: JSON.stringify({
           event: this.state.event,

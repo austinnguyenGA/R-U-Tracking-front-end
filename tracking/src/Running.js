@@ -7,7 +7,7 @@ import NewForm from './NewForm'
 let baseUrl = 'http://localhost:3001'
 
 
-export default class Runs extends Component {
+class Runs extends Component {
     constructor(props){
       super(props)
   
@@ -90,28 +90,6 @@ export default class Runs extends Component {
         travels: copyRuns
       })
     }
-  
-    // toggleCelebrated = (run) => {
-    //   // console.log(run)
-    //   fetch(baseUrl + '/runs/' + run._id, {
-    //     method: 'PUT',
-    //     body: JSON.stringify({celebrated: !run.celebrated}),
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     credentials: "include"
-    //   }).then(res => res.json())
-    //   .then(resJson => {
-    //     // console.log(resJson)
-    //     const copyRuns = [...this.state.runs]
-    //     const findIndex = this.state.runs.findIndex(
-    //       run => run._id === resJson.data._id)
-    //       copyRuns[findIndex].celebrated = resJson.data.celebrated
-    //       this.setState({
-    //         runs: copyRuns
-    //       })
-    //   })
-    // }
   
     deleteRun = (id) => { 
       console.log(id)
@@ -198,23 +176,7 @@ export default class Runs extends Component {
           <h1>Runs</h1>
           <NewForm baseUrl={baseUrl}
           addRun={this.addRun} />
-          <table>
-            <tbody>
-              {this.state.runs.map((run, i) => {
-                return (
-                  <tr key={i}>
-                    <td >{run.event}</td>
-                    <td >{run.time}</td>
-                    <td >{run.goal}</td>
-                    <td >{run.reflection}</td>
-                    <td >{run.video}</td>
-                    <td onClick= {() => this.deleteRun(run._id)}>X</td>
-                    {/* <td onClick= {() => this.showEditForm(run)}>Edit this Run</td> */}
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          
           {
             this.state.modalOpen &&
             <form onSubmit={this.handleSubmit}>
@@ -238,3 +200,5 @@ export default class Runs extends Component {
     }
   
   }
+
+  export default Runs

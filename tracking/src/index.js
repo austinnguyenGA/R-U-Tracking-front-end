@@ -5,12 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import Show from './Show'
 import Running from './Running'
 import Swimming from './Swimming'
+import App from './Nav'
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Show /> */}
-    <Running />
+    <App />
     <Swimming />
+    <Running />
   </React.StrictMode>,
   document.getElementById('root')
 );

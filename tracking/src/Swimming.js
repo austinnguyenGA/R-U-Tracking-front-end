@@ -5,7 +5,7 @@ import NewForm from './NewForm'
 
 let baseUrl = 'http://localhost:3001'
 
-export default class Swims extends Component {
+class Swims extends Component {
     constructor(props){
       super(props)
   
@@ -88,28 +88,6 @@ export default class Swims extends Component {
         travels: copySwims
       })
     }
-  
-    // toggleCelebrated = (swim) => {
-    //   // console.log(swim)
-    //   fetch(baseUrl + '/swims/' + swim._id, {
-    //     method: 'PUT',
-    //     body: JSON.stringify({celebrated: !swim.celebrated}),
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     credentials: "include"
-    //   }).then(res => res.json())
-    //   .then(resJson => {
-    //     // console.log(resJson)
-    //     const copySwims = [...this.state.swims]
-    //     const findIndex = this.state.swims.findIndex(
-    //       swim => swim._id === resJson.data._id)
-    //       copySwims[findIndex].celebrated = resJson.data.celebrated
-    //       this.setState({
-    //         swims: copySwims
-    //       })
-    //   })
-    // }
   
     deleteSwim = (id) => { 
       console.log(id)
@@ -196,23 +174,7 @@ export default class Swims extends Component {
           <h1>Swims</h1>
           <NewForm baseUrl={baseUrl}
           addSwim={this.addSwim} />
-          <table>
-            <tbody>
-              {this.state.swims.map((swim, i) => {
-                return (
-                  <tr key={i}>
-                    <td >{swim.event}</td>
-                    <td >{swim.time}</td>
-                    <td >{swim.goal}</td>
-                    <td >{swim.reflection}</td>
-                    <td >{swim.video}</td>
-                    <td onClick= {() => this.deleteSwim(swim._id)}>X</td>
-                    {/* <td onClick= {() => this.showEditForm(swims)}>Edit this Swim</td> */}
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+       
           {
             this.state.modalOpen &&
             <form onSubmit={this.handleSubmit}>
@@ -236,3 +198,5 @@ export default class Swims extends Component {
     }
   
   }
+
+  export default Swims
