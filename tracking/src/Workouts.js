@@ -5,7 +5,7 @@ import NewForm from './NewForm'
 
 let baseUrl = 'http://localhost:3001'
 
-class Swims extends Component {
+class Workout extends Component {
     constructor(props){
       super(props)
   
@@ -13,11 +13,11 @@ class Swims extends Component {
         travels:[],
         modalOpen: false,
         travelToBeEdited: {},
-        Event:'',
-        Time:'',
-        Goal: '',
-        Reflection: '',
-        Video: ''
+        Exercise:'',
+        Sets:'',
+        Reps: '',
+        Duration: '',
+        Date: ''
       }
     }
   
@@ -38,7 +38,7 @@ class Swims extends Component {
     }).then(res => res.json())
     .then(resJson => {
       console.log(resJson)
-      this.getSwim()
+      this.getWorkout()
     })
   }
   
@@ -62,9 +62,9 @@ class Swims extends Component {
   }
   
   
-    getSwim = () => { //goes back to homepage
+    getWorkout = () => { //goes back to homepage
   
-      fetch(baseUrl + "/swims", {
+      fetch(baseUrl + "/exercises", {
         credentials: "include"
       })
       .then(res => {
@@ -75,23 +75,23 @@ class Swims extends Component {
         }
       }).then(data => {
         // console.log(data)
-        this.setState({swims: data})
+        this.setState({workouts: data})
       })
     }
   
-    addSwim = (newSwim) => {
+    addWorkout = (newWorkout) => {
       //update state with the new travel frm the NewForm Component
   
-      const copySwims = [...this.state.swims]
-      copySwims.push(newSwim)
+      const copyWorkouts = [...this.state.workouts]
+      copyWorkouts.push(newWorkout)
       this.setState({
-        travels: copySwims
+        travels: copyWorkouts
       })
     }
   
-    deleteSwim = (id) => { 
+    deleteWorkout = (id) => { 
       console.log(id)
-      fetch(baseUrl + '/swims/' + id, {
+      fetch(baseUrl + '/exercise/' + id, {
         method: 'DELETE',
         credentials: "include"
       }).then( res => {
@@ -100,11 +100,11 @@ class Swims extends Component {
         if(res.status === 200) {
           // console.log("here");
           const findIndex =
-          this.state.swims.findIndex(swim  => swim._id === id)
-          const copySwims = [...this.state.swims]
-          copySwims.splice(findIndex, 1)
+          this.state.workouts.findIndex(workout  => workout._id === id)
+          const copyWorkouts = [...this.state.workouts]
+          copyWorkouts.splice(findIndex, 1)
           this.setState({
-            swims: copySwims
+            swims: copyWorkouts
           })
         }
       })
@@ -113,14 +113,14 @@ class Swims extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
   
-      fetch(baseUrl + '/swims/' + this.state.swimToBeEdited._id,{
+      fetch(baseUrl + '/exercises/' + this.state.workoutToBeEdited._id,{
         method: 'PUT',
         body: JSON.stringify({
-          event: e.target.event.value,
-          time: e.target.time.value,
-          goal: e.target.goal.value,
-          reflection: e.target.reflection.value,
-          video: e.target.video.value
+          exercise: e.target.exercise.value,
+          sets: e.target.sets.value,
+          reps: e.target.reps.value,
+          duration: e.target.duration.value,
+          date: e.target.date.value
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -129,11 +129,11 @@ class Swims extends Component {
       }).then(res => res.json())
       .then(resJson => {
         // console.log(resJson);
-        const findIndex = this.state.swims.findIndex(swim => swim._id === resJson.data._id)
-        const copySwims = [...this.state.swims]
-        copySwims[findIndex] = resJson.data
+        const findIndex = this.state.workouts.findIndex(workout => workout._id === resJson.data._id)
+        const copyWorkouts = [...this.state.workouts]
+        copyWorkouts[findIndex] = resJson.data
         this.setState({
-          swims: copySwims,
+          workouts: copyWorkouts,
           modalOpen: false
         })
       })
@@ -145,49 +145,49 @@ class Swims extends Component {
       })
     }
   
-    showEditForm = (swim) => {
+    showEditForm = (workout) => {
       // console.log('I was clicked!');
       this.setState({
         modalOpen:true,
-        event: swim.event,
-        time: swim.time,
-        goal: swim.goal,
-        reflection: swim.reflection,
-        video: swim.video,
-        swimToBeEdited: swim
+        exercise: workout.exercise,
+        sets: workout.sets,
+        reps: workout.reps,
+        duration: workout.duration,
+        date: workout.video,
+        workoutToBeEdited: workout
       })
     }
   
     //Component lifecycle
   
     componentDidMount() {
-      this.getSwim()
+      this.getWorkout()
     }
   
   
   
     render () {
       return (
-        <div className="Swim">
+        <div className="Exercise">
           {/* <Nav loginUser={this.loginUser}
           register={this.register} /> */}
-          <h1>Swims</h1>
+          <h1>Workout</h1>
           <NewForm baseUrl={baseUrl}
-          addSwim={this.addSwim} />
+          addWorkout={this.addworkout} />
        
           {
             this.state.modalOpen &&
             <form onSubmit={this.handleSubmit}>
-              <label>Event: </label>
-              <input name="event" value={this.state.event} onChange={this.handleChange} /><br/>
-              <label>Time: </label>
-              <input name="time" value={this.state.time} onChange={this.handleChange} /><br/>
-              <label>Goal: </label>
-              <input name="Goal" value={this.state.goal} onChange={this.handleChange} /><br/>
-              <label>Reflection: </label>
-              <input name="reflection" value={this.state.reflection} onChange={this.handleChange} /><br/>
-              <label>Video: </label>
-              <input name="video" value={this.state.video} onChange={this.handleChange} />
+              <label>Exercise: </label>
+              <input name="exercise" value={this.state.exercise} onChange={this.handleChange} /><br/>
+              <label>Sets: </label>
+              <input name="sets" value={this.state.sets} onChange={this.handleChange} /><br/>
+              <label>Reps: </label>
+              <input name="reps" value={this.state.reps} onChange={this.handleChange} /><br/>
+              <label>Duration: </label>
+              <input name="duration" value={this.state.duration} onChange={this.handleChange} /><br/>
+              <label>Date: </label>
+              <input name="date" value={this.state.date} onChange={this.handleChange} />
   
               <button>Submit</button>
               <button>Submit</button>
@@ -199,4 +199,4 @@ class Swims extends Component {
   
   }
 
-  export default Swims
+  export default Workout

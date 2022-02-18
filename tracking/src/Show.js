@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import Swimming from './Swimming'
 import Running from './Running'
+
 // import CanvasJS from 'canvasjs'
 // import CanvasJSChart from 'CanvasJSChart'
 
@@ -65,6 +66,24 @@ import Running from './Running'
 // }
 // module.exports = Graph;                              
 
+const Background = () => {
+    return (
+        <section className='background'>
+            <h3>How Did You Race?</h3>
+            <div className='grid'>
+                <div>
+                    <img src={"https://i.imgur.com/60egnVj.jpg"} />
+                    <h3>Swim Your Heart Out</h3>
+                </div>
+
+                <div>
+                    <img src={"https://i.imgur.com/RWsW0iQ.jpg"} />
+                    <h3>Run Like the Wind</h3>
+                </div>
+            </div>
+        </section>
+    )
+}
 //   render (
 //     <React.StrictMode>
   
@@ -73,6 +92,6 @@ import Running from './Running'
 //     </React.StrictMode>,
 //   )
 
-
+export default Background
 
 // export default Show;

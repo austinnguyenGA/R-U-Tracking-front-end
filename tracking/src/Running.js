@@ -154,7 +154,7 @@ class Runs extends Component {
         event: run.event,
         time: run.time,
         goal: run.goal,
-        reflectoin: run.reflection,
+        reflection: run.reflection,
         video: run.video,
         runToBeEdited: run
       })

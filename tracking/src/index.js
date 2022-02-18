@@ -6,13 +6,24 @@ import Show from './Show'
 import Running from './Running'
 import Swimming from './Swimming'
 import App from './Nav'
+import Workout from './Workouts'
+import Trial from './SwimTrials'
+import Trial1 from './TrackTrials'
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Show /> */}
     <App />
+    <br />
     <Swimming />
+    <br />
     <Running />
+    <br />
+    <Workout />
+    <br />
+    <Trial />
+    <br />
+    <Trial1 />
   </React.StrictMode>,
   document.getElementById('root')
 );
