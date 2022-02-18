@@ -1,11 +1,20 @@
 // child of show 
+// child of show 
 import React, {Component} from 'react'
 import NewForm from './NewForm'
 
 
-let baseUrl = 'http://localhost:3001'
+// let baseUrl = 'http://localhost:3001'
+let baseUrl;
 
-class Swims extends Component {
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = 'http://localhost:3001';
+} else {
+  // "https://fathomless-sierra-68956.herokuapp.com" in this case is the *API* url
+  baseUrl = 'https://r-u-tracking-backend.herokuapp.com';
+}
+
+class Runs extends Component {
     constructor(props){
       super(props)
   
@@ -38,7 +47,7 @@ class Swims extends Component {
     }).then(res => res.json())
     .then(resJson => {
       console.log(resJson)
-      this.getSwim()
+      this.getRun()
     })
   }
   
@@ -57,41 +66,41 @@ class Swims extends Component {
     }).then(res => res.json())
     .then(resJson => {
       console.log(resJson)
-      // call getSwim to get all of the swims and refresh the page
+      // call getRun to get all of the runs and refresh the page
     })
   }
   
   
-    getSwim = () => { //goes back to homepage
+    getRun = () => { //goes back to homepage
   
-      fetch(baseUrl + "/swims", {
+      fetch(baseUrl + "/runs", {
         credentials: "include"
       })
       .then(res => {
-        if(res.status === 200) {
+        if(res.status == 200) {
           return res.json()
         } else {
           return []
         }
       }).then(data => {
         // console.log(data)
-        this.setState({swims: data})
+        this.setState({runs: data})
       })
     }
   
-    addSwim = (newSwim) => {
-      //update state with the new travel frm the NewForm Component
+    addRun = (newRun) => {
+      //update state with the new run fr0m the NewForm Component
   
-      const copySwims = [...this.state.swims]
-      copySwims.push(newSwim)
+      const copyRuns = [...this.state.runs]
+      copyRuns.push(newRun)
       this.setState({
-        travels: copySwims
+        travels: copyRuns
       })
     }
   
-    deleteSwim = (id) => { 
+    deleteRun = (id) => { 
       console.log(id)
-      fetch(baseUrl + '/swims/' + id, {
+      fetch(baseUrl + '/runs/' + id, {
         method: 'DELETE',
         credentials: "include"
       }).then( res => {
@@ -100,11 +109,11 @@ class Swims extends Component {
         if(res.status === 200) {
           // console.log("here");
           const findIndex =
-          this.state.swims.findIndex(swim  => swim._id === id)
-          const copySwims = [...this.state.swims]
-          copySwims.splice(findIndex, 1)
+          this.state.runs.findIndex(run  => run._id === id)
+          const copyRuns = [...this.state.runs]
+          copyRuns.splice(findIndex, 1)
           this.setState({
-            swims: copySwims
+            runs: copyRuns
           })
         }
       })
@@ -113,14 +122,14 @@ class Swims extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
   
-      fetch(baseUrl + '/swims/' + this.state.swimToBeEdited._id,{
+      fetch(baseUrl + '/runs/' + this.state.runToBeEdited._id,{
         method: 'PUT',
         body: JSON.stringify({
-          event: e.target.event.value,
-          time: e.target.time.value,
-          goal: e.target.goal.value,
-          reflection: e.target.reflection.value,
-          video: e.target.video.value
+            event: e.target.event.value,
+            time: e.target.time.value,
+            goal: e.target.goal.value,
+            reflection: e.target.reflection.value,
+            video: e.target.video.value
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -129,11 +138,11 @@ class Swims extends Component {
       }).then(res => res.json())
       .then(resJson => {
         // console.log(resJson);
-        const findIndex = this.state.swims.findIndex(swim => swim._id === resJson.data._id)
-        const copySwims = [...this.state.swims]
-        copySwims[findIndex] = resJson.data
+        const findIndex = this.state.runs.findIndex(run => run._id === resJson.data._id)
+        const copyRuns = [...this.state.runs]
+        copyRuns[findIndex] = resJson.data
         this.setState({
-          swims: copySwims,
+          runs: copyRuns,
           modalOpen: false
         })
       })
@@ -145,36 +154,36 @@ class Swims extends Component {
       })
     }
   
-    showEditForm = (swim) => {
+    showEditForm = (run) => {
       // console.log('I was clicked!');
       this.setState({
         modalOpen:true,
-        event: swim.event,
-        time: swim.time,
-        goal: swim.goal,
-        reflection: swim.reflection,
-        video: swim.video,
-        swimToBeEdited: swim
+        event: run.event,
+        time: run.time,
+        goal: run.goal,
+        reflection: run.reflection,
+        video: run.video,
+        runToBeEdited: run
       })
     }
   
     //Component lifecycle
   
     componentDidMount() {
-      this.getSwim()
+      this.getRun()
     }
   
   
   
     render () {
       return (
-        <div className="Swim">
+        <div className="Run">
           {/* <Nav loginUser={this.loginUser}
           register={this.register} /> */}
-          <h1>Swims</h1>
+          <h1>Runs</h1>
           <NewForm baseUrl={baseUrl}
-          addSwim={this.addSwim} />
-       
+          addRun={this.addRun} />
+          
           {
             this.state.modalOpen &&
             <form onSubmit={this.handleSubmit}>
@@ -199,4 +208,4 @@ class Swims extends Component {
   
   }
 
-  export default Swims
+  export default Runs
