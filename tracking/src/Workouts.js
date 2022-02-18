@@ -1,6 +1,6 @@
 // child of show 
 import React, {Component} from 'react'
-import NewForm from './NewForm'
+import WONewForm from './WONewForm'
 
 
 let baseUrl = 'http://localhost:3001'
@@ -172,7 +172,7 @@ class Workout extends Component {
           {/* <Nav loginUser={this.loginUser}
           register={this.register} /> */}
           <h1>Workout</h1>
-          <NewForm baseUrl={baseUrl}
+          <WONewForm baseUrl={baseUrl}
           addWorkout={this.addworkout} />
        
           {

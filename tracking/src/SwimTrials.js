@@ -20,6 +20,14 @@ const data = [
 function Trial() {
   return (
     <div className="Trial">
+       <section className='swimAsset'>
+            <div className='grid'>
+                <div>
+                    <img src={"https://i.imgur.com/60egnVj.jpg"} />
+                    <h3>Swim Your Heart Out</h3>
+                </div>
+            </div>
+        </section>
       <table>
         <tr>
           <th>Event</th>

@@ -14,7 +14,15 @@ const data = [
   
 function Trial1() {
   return (
-    <div className="Trial">
+    <div className="Trial1">
+         <section className='trackAsset'>
+            <div className='grid'>
+                <div>
+                    <img src={"https://i.imgur.com/RWsW0iQ.jpg"} />
+                    <h3>Run Like the Wind</h3>
+                </div>
+            </div>
+        </section>
       <table>
         <tr>
           <th>Event</th>

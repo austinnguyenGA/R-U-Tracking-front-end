@@ -9,9 +9,9 @@ function App() {
         sticky="top">
         
         <Nav>
-          <Nav.Link href="Locations">Top Locations</Nav.Link>
-          <Nav.Link href="Add">Add A Place</Nav.Link>
-          <Nav.Link href="Explore">Explore More</Nav.Link>
+          <Nav.Link href="Swimming">Swimming</Nav.Link>
+          <Nav.Link href="Track">Track</Nav.Link>
+          <Nav.Link href="Times">Olympic Trial Times</Nav.Link>
           <Nav.Link href="SignIn">Sign In</Nav.Link>
           <Nav.Link href="SignUp">Sign Up</Nav.Link>
         </Nav>
@@ -19,7 +19,7 @@ function App() {
 
       </Navbar>
       <div className = "content">
-        This is a Content
+      ®
       </div>
     </div>
   )
