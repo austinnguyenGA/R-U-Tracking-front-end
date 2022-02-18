@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Show from './Show'
+import Running from './Running'
+import Swimming from './Swimming'
 
 ReactDOM.render(
   <React.StrictMode>
-    
+    {/* <Show /> */}
+    <Running />
+    <Swimming />
   </React.StrictMode>,
   document.getElementById('root')
 );
